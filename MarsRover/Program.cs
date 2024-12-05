@@ -7,6 +7,6 @@ internal class Program
         string? input = "27 ,  72";
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
     }
 }

@@ -2,24 +2,34 @@
 
 namespace MarsRover;
 
-internal static class InputParser
+internal static class InputManager
 {
-    internal static PlateauSize? ParsePlateauSize(string userInput)
+    internal static string? GetUserInput(string prompt)
     {
-        string? normalisedInput = NormaliseInput(userInput);
-        if (normalisedInput == null)
+        Console.WriteLine(prompt);
+
+        string? userInput = Console.ReadLine();
+        if (String.IsNullOrEmpty(userInput))
             return null;
 
-        string[] splitInput = normalisedInput.Split(' ');
+        return userInput;
+    }
 
+    internal static PlateauSize? ParsePlateauSize(string userInput)
+    {
+        int minimumSize = 2;
+
+        string normalisedInput = NormaliseInput(userInput)!;
+
+        string[] splitInput = normalisedInput.Split(' ');
         if (splitInput.Length != 2)
             return null;
 
         bool isNumericWidth = int.TryParse(splitInput[0], out int Width);
         bool isNumericHeight = int.TryParse(splitInput[1], out int Height);
 
-        bool isValidWidth = isNumericWidth && (Width >= 2);
-        bool isValidHeight = isNumericHeight && (Height >= 2);
+        bool isValidWidth = isNumericWidth && (Width >= minimumSize);
+        bool isValidHeight = isNumericHeight && (Height >= minimumSize);
 
         if (isValidWidth && isValidHeight)
             return new PlateauSize(Width, Height);
@@ -29,12 +39,9 @@ internal static class InputParser
 
     internal static RoverPosition? ParseRoverPosition(string userInput)
     {
-        string? normalisedInput = NormaliseInput(userInput);
-        if (normalisedInput == null)
-            return null;
+        string normalisedInput = NormaliseInput(userInput)!;
 
         string[] splitInput = normalisedInput.Split(' ');
-
         if (splitInput.Length != 3)
             return null;
 
@@ -55,9 +62,7 @@ internal static class InputParser
 
     internal static List<Command>? ParseCommands(string userInput)
     {
-        string? normalisedInput = NormaliseInput(userInput);
-        if (normalisedInput == null)
-            return null;
+        string normalisedInput = NormaliseInput(userInput)!;
 
         string[] splitInput = normalisedInput.Split(' ');
 
@@ -74,9 +79,6 @@ internal static class InputParser
 
     private static string? NormaliseInput(string input)
     {
-        if (String.IsNullOrEmpty(input))
-            return null;
-
         string nonCommaInput = input.Replace(',', ' ');
         string normalisedInput = Regex.Replace(nonCommaInput, @"\s+", " ")
                                       .Trim();

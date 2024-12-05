@@ -1,34 +1,8 @@
 namespace MarsRover.Tests;
 
-public class InputParserTests
+public class InputManagerTests
 {
     #region ParsePlateauSize Tests
-    [Test]
-    public void ParsePlateauSize_ReturnsNullOnNullInput()
-    {
-        // Arrange
-        string? input = null;
-        PlateauSize? expected = null;
-
-        // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
-
-        // Assert
-        Assert.That(result, Is.EqualTo(expected));
-    }
-    [Test]
-    public void ParsePlateauSize_ReturnsNullOnEmptyInput()
-    {
-        // Arrange
-        string? input = "";
-        PlateauSize? expected = null;
-
-        // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
-
-        // Assert
-        Assert.That(result, Is.EqualTo(expected));
-    }
     [Test]
     public void ParsePlateauSize_ReturnsNullOnSingleSpaceInput()
     {
@@ -37,7 +11,7 @@ public class InputParserTests
         PlateauSize? expected = null;
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -50,7 +24,7 @@ public class InputParserTests
         PlateauSize? expected = null;
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -63,7 +37,7 @@ public class InputParserTests
         PlateauSize? expected = null;
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -76,7 +50,7 @@ public class InputParserTests
         PlateauSize? expected = null;
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -89,7 +63,7 @@ public class InputParserTests
         PlateauSize? expected = null;
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -102,7 +76,7 @@ public class InputParserTests
         PlateauSize? expected = null;
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -115,7 +89,7 @@ public class InputParserTests
         PlateauSize? expected = null;
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -128,7 +102,7 @@ public class InputParserTests
         PlateauSize? expected = null;
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -141,7 +115,7 @@ public class InputParserTests
         PlateauSize? expected = null;
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -154,7 +128,7 @@ public class InputParserTests
         PlateauSize? expected = null;
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -167,7 +141,7 @@ public class InputParserTests
         PlateauSize? expected = new PlateauSize(2, 2);
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.Multiple(() =>
@@ -184,7 +158,7 @@ public class InputParserTests
         PlateauSize? expected = new PlateauSize(12, 27);
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.Multiple(() =>
@@ -201,7 +175,7 @@ public class InputParserTests
         PlateauSize? expected = new PlateauSize(3, 3);
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.Multiple(() =>
@@ -218,7 +192,7 @@ public class InputParserTests
         PlateauSize? expected = new PlateauSize(27, 72);
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.Multiple(() =>
@@ -235,7 +209,7 @@ public class InputParserTests
         PlateauSize? expected = new PlateauSize(2, 2);
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.Multiple(() =>
@@ -252,7 +226,7 @@ public class InputParserTests
         PlateauSize? expected = new PlateauSize(12, 27);
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.Multiple(() =>
@@ -269,7 +243,7 @@ public class InputParserTests
         PlateauSize? expected = new PlateauSize(2, 2);
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.Multiple(() =>
@@ -286,7 +260,7 @@ public class InputParserTests
         PlateauSize? expected = new PlateauSize(12, 27);
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.Multiple(() =>
@@ -303,7 +277,7 @@ public class InputParserTests
         PlateauSize? expected = new PlateauSize(3, 3);
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.Multiple(() =>
@@ -320,7 +294,7 @@ public class InputParserTests
         PlateauSize? expected = new PlateauSize(27, 72);
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.Multiple(() =>
@@ -337,7 +311,7 @@ public class InputParserTests
         PlateauSize? expected = new PlateauSize(2, 2);
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.That(result, Is.Not.Null);
@@ -355,7 +329,7 @@ public class InputParserTests
         PlateauSize? expected = new PlateauSize(2, 2);
 
         // Act
-        PlateauSize? result = InputParser.ParsePlateauSize(input);
+        PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
         Assert.Multiple(() =>
@@ -368,32 +342,6 @@ public class InputParserTests
 
     #region ParseRoverPosition Tests
     [Test]
-    public void ParseRoverPosition_ReturnsNullOnNullInput()
-    {
-        // Arrange
-        string? input = null;
-        RoverPosition? expected = null;
-
-        // Act
-        RoverPosition? result = InputParser.ParseRoverPosition(input);
-
-        // Assert
-        Assert.That(result, Is.EqualTo(expected));
-    }
-    [Test]
-    public void ParseRoverPosition_ReturnsNullOnEmptyInput()
-    {
-        // Arrange
-        string? input = "";
-        RoverPosition? expected = null;
-
-        // Act
-        RoverPosition? result = InputParser.ParseRoverPosition(input);
-
-        // Assert
-        Assert.That(result, Is.EqualTo(expected));
-    }
-    [Test]
     public void ParseRoverPosition_ReturnsNullOnSingleSpaceInput()
     {
         // Arrange
@@ -401,7 +349,7 @@ public class InputParserTests
         RoverPosition? expected = null;
 
         // Act
-        RoverPosition? result = InputParser.ParseRoverPosition(input);
+        RoverPosition? result = InputManager.ParseRoverPosition(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -414,7 +362,7 @@ public class InputParserTests
         RoverPosition? expected = null;
 
         // Act
-        RoverPosition? result = InputParser.ParseRoverPosition(input);
+        RoverPosition? result = InputManager.ParseRoverPosition(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -427,7 +375,7 @@ public class InputParserTests
         RoverPosition? expected = null;
 
         // Act
-        RoverPosition? result = InputParser.ParseRoverPosition(input);
+        RoverPosition? result = InputManager.ParseRoverPosition(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -440,7 +388,7 @@ public class InputParserTests
         RoverPosition? expected = null;
 
         // Act
-        RoverPosition? result = InputParser.ParseRoverPosition(input);
+        RoverPosition? result = InputManager.ParseRoverPosition(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -453,7 +401,7 @@ public class InputParserTests
         RoverPosition? expected = null;
 
         // Act
-        RoverPosition? result = InputParser.ParseRoverPosition(input);
+        RoverPosition? result = InputManager.ParseRoverPosition(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -466,7 +414,7 @@ public class InputParserTests
         RoverPosition? expected = null;
 
         // Act
-        RoverPosition? result = InputParser.ParseRoverPosition(input);
+        RoverPosition? result = InputManager.ParseRoverPosition(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -479,7 +427,7 @@ public class InputParserTests
         RoverPosition? expected = null;
 
         // Act
-        RoverPosition? result = InputParser.ParseRoverPosition(input);
+        RoverPosition? result = InputManager.ParseRoverPosition(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -492,7 +440,7 @@ public class InputParserTests
         RoverPosition? expected = null;
 
         // Act
-        RoverPosition? result = InputParser.ParseRoverPosition(input);
+        RoverPosition? result = InputManager.ParseRoverPosition(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -505,7 +453,7 @@ public class InputParserTests
         RoverPosition? expected = null;
 
         // Act
-        RoverPosition? result = InputParser.ParseRoverPosition(input);
+        RoverPosition? result = InputManager.ParseRoverPosition(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -518,7 +466,7 @@ public class InputParserTests
         RoverPosition? expected = new RoverPosition(1, 2, "N");
 
         // Act
-        RoverPosition? result = InputParser.ParseRoverPosition(input);
+        RoverPosition? result = InputManager.ParseRoverPosition(input);
 
         // Assert
         Assert.Multiple(() =>
@@ -536,7 +484,7 @@ public class InputParserTests
         RoverPosition? expected = new RoverPosition(1, 2, "n");
 
         // Act
-        RoverPosition? result = InputParser.ParseRoverPosition(input);
+        RoverPosition? result = InputManager.ParseRoverPosition(input);
 
         // Assert
         Assert.Multiple(() =>
@@ -554,7 +502,7 @@ public class InputParserTests
         RoverPosition? expected = new RoverPosition(12, 27, "N");
 
         // Act
-        RoverPosition? result = InputParser.ParseRoverPosition(input);
+        RoverPosition? result = InputManager.ParseRoverPosition(input);
 
         // Assert
         Assert.Multiple(() =>
@@ -568,32 +516,6 @@ public class InputParserTests
 
     #region ParseCommands Tests
     [Test]
-    public void ParseCommands_ReturnsNullOnNullInput()
-    {
-        // Arrange
-        string? input = null;
-        List<Command>? expected = null;
-
-        // Act
-        List<Command>? result = InputParser.ParseCommands(input);
-
-        // Assert
-        Assert.That(result, Is.EqualTo(expected));
-    }
-    [Test]
-    public void ParseCommands_ReturnsNullOnEmptyInput()
-    {
-        // Arrange
-        string? input = "";
-        List<Command>? expected = null;
-
-        // Act
-        List<Command>? result = InputParser.ParseCommands(input);
-
-        // Assert
-        Assert.That(result, Is.EqualTo(expected));
-    }
-    [Test]
     public void ParseCommands_ReturnsNullOnSingleSpaceInput()
     {
         // Arrange
@@ -601,7 +523,7 @@ public class InputParserTests
         List<Command>? expected = null;
 
         // Act
-        List<Command>? result = InputParser.ParseCommands(input);
+        List<Command>? result = InputManager.ParseCommands(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -614,7 +536,7 @@ public class InputParserTests
         List<Command>? expected = null;
 
         // Act
-        List<Command>? result = InputParser.ParseCommands(input);
+        List<Command>? result = InputManager.ParseCommands(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -627,7 +549,7 @@ public class InputParserTests
         List<Command>? expected = [Command.L, Command.F, Command.R];
 
         // Act
-        List<Command>? result = InputParser.ParseCommands(input);
+        List<Command>? result = InputManager.ParseCommands(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -642,7 +564,7 @@ public class InputParserTests
                                    Command.F, Command.F, Command.F];
 
         // Act
-        List<Command>? result = InputParser.ParseCommands(input);
+        List<Command>? result = InputManager.ParseCommands(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -655,7 +577,7 @@ public class InputParserTests
         List<Command>? expected = [Command.L, Command.F, Command.R];
 
         // Act
-        List<Command>? result = InputParser.ParseCommands(input);
+        List<Command>? result = InputManager.ParseCommands(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -670,7 +592,7 @@ public class InputParserTests
                                    Command.F, Command.F, Command.F];
 
         // Act
-        List<Command>? result = InputParser.ParseCommands(input);
+        List<Command>? result = InputManager.ParseCommands(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -683,7 +605,7 @@ public class InputParserTests
         List<Command>? expected = [Command.L, Command.F, Command.R];
 
         // Act
-        List<Command>? result = InputParser.ParseCommands(input);
+        List<Command>? result = InputManager.ParseCommands(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
@@ -698,7 +620,7 @@ public class InputParserTests
                                    Command.F, Command.F, Command.F];
 
         // Act
-        List<Command>? result = InputParser.ParseCommands(input);
+        List<Command>? result = InputManager.ParseCommands(input);
 
         // Assert
         Assert.That(result, Is.EqualTo(expected));
