@@ -314,7 +314,6 @@ public class InputManagerTests
         PlateauSize? result = InputManager.ParsePlateauSize(input);
 
         // Assert
-        Assert.That(result, Is.Not.Null);
         Assert.Multiple(() =>
         {
             Assert.That(result.Width, Is.EqualTo(expected.Width));

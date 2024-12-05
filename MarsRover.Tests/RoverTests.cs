@@ -100,4 +100,85 @@ public class RoverTests
         });
     }
     #endregion
+
+    #region Move Tests
+    [Test]
+    public void Move_ReturnsFalseOnOutOfBoundsForwards()
+    {
+        // Arrange
+        PlateauSize plateauSize = new PlateauSize(5, 5);
+
+        Rover roverNorth = new Rover("testName", new RoverPosition(4, 4, Compass.North));
+        Rover roverEast = new Rover("testName", new RoverPosition(4, 4, Compass.East));
+        Rover roverSouth = new Rover("testName", new RoverPosition(0, 0, Compass.South));
+        Rover roverWest = new Rover("testName", new RoverPosition(0, 0, Compass.West));
+
+        // Act
+        bool forwardNorthSuccess = roverNorth.Move(plateauSize, Command.MoveForward);
+        bool forwardEastSuccess = roverEast.Move(plateauSize, Command.MoveForward);
+        bool forwardSouthSuccess = roverSouth.Move(plateauSize, Command.MoveForward);
+        bool forwardWestSuccess = roverWest.Move(plateauSize, Command.MoveForward);
+
+        // Assert
+        Assert.Multiple(() =>
+        {
+            Assert.That(forwardNorthSuccess, Is.EqualTo(false));
+            Assert.That(forwardEastSuccess, Is.EqualTo(false));
+            Assert.That(forwardSouthSuccess, Is.EqualTo(false));
+            Assert.That(forwardWestSuccess, Is.EqualTo(false));
+        });
+    }
+    [Test]
+    public void Move_ReturnsFalseOnOutOfBoundsBackwards()
+    {
+        // Arrange
+        PlateauSize plateauSize = new PlateauSize(5, 5);
+
+        Rover roverNorth = new Rover("testName", new RoverPosition(0, 0, Compass.North));
+        Rover roverEast = new Rover("testName", new RoverPosition(0, 0, Compass.East));
+        Rover roverSouth = new Rover("testName", new RoverPosition(4, 4, Compass.South));
+        Rover roverWest = new Rover("testName", new RoverPosition(4, 4, Compass.West));
+
+        // Act
+        bool backwardNorthSuccess = roverNorth.Move(plateauSize, Command.MoveBack);
+        bool backwardEastSuccess = roverEast.Move(plateauSize, Command.MoveBack);
+        bool backwardSouthSuccess = roverSouth.Move(plateauSize, Command.MoveBack);
+        bool backwardWestSuccess = roverWest.Move(plateauSize, Command.MoveBack);
+
+        // Assert
+        Assert.Multiple(() =>
+        {
+            Assert.That(backwardNorthSuccess, Is.EqualTo(false));
+            Assert.That(backwardEastSuccess, Is.EqualTo(false));
+            Assert.That(backwardSouthSuccess, Is.EqualTo(false));
+            Assert.That(backwardWestSuccess, Is.EqualTo(false));
+        });
+    }
+    [Test]
+    public void Move_ReturnsTrueOnSuccess()
+    {
+        // Arrange
+        PlateauSize plateauSize = new PlateauSize(5, 5);
+
+        Rover roverNorth = new Rover("testName", new RoverPosition(0, 0, Compass.North));
+        Rover roverEast = new Rover("testName", new RoverPosition(0, 0, Compass.East));
+        Rover roverSouth = new Rover("testName", new RoverPosition(4, 4, Compass.South));
+        Rover roverWest = new Rover("testName", new RoverPosition(4, 4, Compass.West));
+
+        // Act
+        bool forwardNorthSuccess = roverNorth.Move(plateauSize, Command.MoveForward);
+        bool forwardEastSuccess = roverEast.Move(plateauSize, Command.MoveForward);
+        bool forwardSouthSuccess = roverSouth.Move(plateauSize, Command.MoveForward);
+        bool forwardWestSuccess = roverWest.Move(plateauSize, Command.MoveForward);
+
+        // Assert
+        Assert.Multiple(() =>
+        {
+            Assert.That(forwardNorthSuccess, Is.EqualTo(true));
+            Assert.That(forwardEastSuccess, Is.EqualTo(true));
+            Assert.That(forwardSouthSuccess, Is.EqualTo(true));
+            Assert.That(forwardWestSuccess, Is.EqualTo(true));
+        });
+    }
+    #endregion
 }

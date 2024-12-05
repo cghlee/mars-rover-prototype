@@ -40,4 +40,70 @@ internal class Rover
 
         return newDirection;
     }
+
+    internal bool Move(PlateauSize plateauSize, Command command)
+    {
+        int xMax = plateauSize.Width - 1;
+        int xMin = 0;
+
+        int yMax = plateauSize.Height - 1;
+        int yMin = 0;
+
+        if (command == Command.MoveForward)
+        {
+            switch (RoverPosition.Facing)
+            {
+                case Compass.North:
+                    if ((RoverPosition.Y + 1) > yMax)
+                        return false;
+                    else
+                        RoverPosition.Y++; return true;
+                case Compass.South:
+                    if ((RoverPosition.Y - 1) < yMin)
+                        return false;
+                    else
+                        RoverPosition.Y--; return true;
+                case Compass.East:
+                    if ((RoverPosition.X + 1) > xMax)
+                        return false;
+                    else
+                        RoverPosition.X++; return true;
+                case Compass.West:
+                    if ((RoverPosition.X - 1) < xMin)
+                        return false;
+                    else
+                        RoverPosition.X--; return true;
+                default:
+                    return false;
+            }
+        }
+        else
+        {
+            switch (RoverPosition.Facing)
+            {
+                case Compass.North:
+                    if ((RoverPosition.Y - 1) < yMin)
+                        return false;
+                    else
+                        RoverPosition.Y--; return true;
+                case Compass.South:
+                    if ((RoverPosition.Y + 1) > yMax)
+                        return false;
+                    else
+                        RoverPosition.Y++; return true;
+                case Compass.East:
+                    if ((RoverPosition.X - 1) < xMin)
+                        return false;
+                    else
+                        RoverPosition.X--; return true;
+                case Compass.West:
+                    if ((RoverPosition.X + 1) > xMax)
+                        return false;
+                    else
+                        RoverPosition.X++; return true;
+                default:
+                    return false;
+            }
+        }
+    }
 }
