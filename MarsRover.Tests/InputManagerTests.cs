@@ -393,32 +393,6 @@ public class InputManagerTests
         Assert.That(result, Is.EqualTo(expected));
     }
     [Test]
-    public void ParseRoverPosition_ReturnsNullOnZeroXInput()
-    {
-        // Arrange
-        string? input = "0 2 N";
-        RoverPosition? expected = null;
-
-        // Act
-        RoverPosition? result = InputManager.ParseRoverPosition(input);
-
-        // Assert
-        Assert.That(result, Is.EqualTo(expected));
-    }
-    [Test]
-    public void ParseRoverPosition_ReturnsNullOnZeroYInput()
-    {
-        // Arrange
-        string? input = "1 0 N";
-        RoverPosition? expected = null;
-
-        // Act
-        RoverPosition? result = InputManager.ParseRoverPosition(input);
-
-        // Assert
-        Assert.That(result, Is.EqualTo(expected));
-    }
-    [Test]
     public void ParseRoverPosition_ReturnsNullOnNegativeXInput()
     {
         // Arrange

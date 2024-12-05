@@ -48,8 +48,8 @@ internal static class InputManager
         bool isNumericXCoord = int.TryParse(splitInput[0], out int xCoord);
         bool isNumericYCoord = int.TryParse(splitInput[1], out int yCoord);
 
-        bool isValidXCoord = isNumericXCoord && (xCoord > 0);
-        bool isValidYCoord = isNumericYCoord && (yCoord > 0);
+        bool isValidXCoord = isNumericXCoord && (xCoord >= 0);
+        bool isValidYCoord = isNumericYCoord && (yCoord >= 0);
 
         string[] validDirections = ["N", "E", "S", "W"];
         bool isValidDirection = validDirections.Contains(splitInput[2]);

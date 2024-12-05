@@ -114,10 +114,10 @@ public class RoverTests
         Rover roverWest = new Rover("testName", new RoverPosition(0, 0, Compass.West));
 
         // Act
-        bool forwardNorthSuccess = roverNorth.Move(plateauSize, Command.MoveForward);
-        bool forwardEastSuccess = roverEast.Move(plateauSize, Command.MoveForward);
-        bool forwardSouthSuccess = roverSouth.Move(plateauSize, Command.MoveForward);
-        bool forwardWestSuccess = roverWest.Move(plateauSize, Command.MoveForward);
+        bool forwardNorthSuccess = roverNorth.Move(Command.MoveForward, plateauSize);
+        bool forwardEastSuccess = roverEast.Move(Command.MoveForward, plateauSize);
+        bool forwardSouthSuccess = roverSouth.Move(Command.MoveForward, plateauSize);
+        bool forwardWestSuccess = roverWest.Move(Command.MoveForward, plateauSize);
 
         // Assert
         Assert.Multiple(() =>
@@ -140,10 +140,10 @@ public class RoverTests
         Rover roverWest = new Rover("testName", new RoverPosition(4, 4, Compass.West));
 
         // Act
-        bool backwardNorthSuccess = roverNorth.Move(plateauSize, Command.MoveBack);
-        bool backwardEastSuccess = roverEast.Move(plateauSize, Command.MoveBack);
-        bool backwardSouthSuccess = roverSouth.Move(plateauSize, Command.MoveBack);
-        bool backwardWestSuccess = roverWest.Move(plateauSize, Command.MoveBack);
+        bool backwardNorthSuccess = roverNorth.Move(Command.MoveBack, plateauSize);
+        bool backwardEastSuccess = roverEast.Move(Command.MoveBack, plateauSize);
+        bool backwardSouthSuccess = roverSouth.Move(Command.MoveBack, plateauSize);
+        bool backwardWestSuccess = roverWest.Move(Command.MoveBack, plateauSize);
 
         // Assert
         Assert.Multiple(() =>
@@ -155,7 +155,7 @@ public class RoverTests
         });
     }
     [Test]
-    public void Move_ReturnsTrueOnSuccess()
+    public void Move_ReturnsTrueOnForwardSuccess()
     {
         // Arrange
         PlateauSize plateauSize = new PlateauSize(5, 5);
@@ -166,10 +166,36 @@ public class RoverTests
         Rover roverWest = new Rover("testName", new RoverPosition(4, 4, Compass.West));
 
         // Act
-        bool forwardNorthSuccess = roverNorth.Move(plateauSize, Command.MoveForward);
-        bool forwardEastSuccess = roverEast.Move(plateauSize, Command.MoveForward);
-        bool forwardSouthSuccess = roverSouth.Move(plateauSize, Command.MoveForward);
-        bool forwardWestSuccess = roverWest.Move(plateauSize, Command.MoveForward);
+        bool forwardNorthSuccess = roverNorth.Move(Command.MoveForward, plateauSize);
+        bool forwardEastSuccess = roverEast.Move(Command.MoveForward, plateauSize);
+        bool forwardSouthSuccess = roverSouth.Move(Command.MoveForward, plateauSize);
+        bool forwardWestSuccess = roverWest.Move(Command.MoveForward, plateauSize);
+
+        // Assert
+        Assert.Multiple(() =>
+        {
+            Assert.That(forwardNorthSuccess, Is.EqualTo(true));
+            Assert.That(forwardEastSuccess, Is.EqualTo(true));
+            Assert.That(forwardSouthSuccess, Is.EqualTo(true));
+            Assert.That(forwardWestSuccess, Is.EqualTo(true));
+        });
+    }
+    [Test]
+    public void Move_ReturnsTrueOnBackwardSuccess()
+    {
+        // Arrange
+        PlateauSize plateauSize = new PlateauSize(5, 5);
+
+        Rover roverNorth = new Rover("testName", new RoverPosition(4, 4, Compass.North));
+        Rover roverEast = new Rover("testName", new RoverPosition(4, 4, Compass.East));
+        Rover roverSouth = new Rover("testName", new RoverPosition(0, 0, Compass.South));
+        Rover roverWest = new Rover("testName", new RoverPosition(0, 0, Compass.West));
+
+        // Act
+        bool forwardNorthSuccess = roverNorth.Move(Command.MoveBack, plateauSize);
+        bool forwardEastSuccess = roverEast.Move(Command.MoveBack, plateauSize);
+        bool forwardSouthSuccess = roverSouth.Move(Command.MoveBack, plateauSize);
+        bool forwardWestSuccess = roverWest.Move(Command.MoveBack, plateauSize);
 
         // Assert
         Assert.Multiple(() =>

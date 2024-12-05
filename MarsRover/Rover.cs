@@ -41,7 +41,7 @@ internal class Rover
         return newDirection;
     }
 
-    internal bool Move(PlateauSize plateauSize, Command command)
+    internal bool Move(Command command, PlateauSize plateauSize)
     {
         int xMax = plateauSize.Width - 1;
         int xMin = 0;
