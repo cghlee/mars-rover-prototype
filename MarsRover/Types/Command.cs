@@ -2,7 +2,7 @@
 
 internal enum Command
 {
-    Forward,
-    TurnLeft,
-    TurnRight
+    F,
+    L,
+    R
 }

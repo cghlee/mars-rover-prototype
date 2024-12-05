@@ -2,8 +2,8 @@
 
 internal enum Compass
 {
-    North,
-    East,
-    South,
-    West
+    N,
+    E,
+    S,
+    W
 }

@@ -4,6 +4,9 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        string? input = "27 ,  72";
+
+        // Act
+        PlateauSize? result = InputParser.ParsePlateauSize(input);
     }
 }
