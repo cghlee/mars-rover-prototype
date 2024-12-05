@@ -25,56 +25,82 @@ internal static class InputManager
         if (splitInput.Length != 2)
             return null;
 
-        bool isNumericWidth = int.TryParse(splitInput[0], out int Width);
-        bool isNumericHeight = int.TryParse(splitInput[1], out int Height);
+        bool isNumericWidth = int.TryParse(splitInput[0], out int width);
+        bool isNumericHeight = int.TryParse(splitInput[1], out int height);
 
-        bool isValidWidth = isNumericWidth && (Width >= minimumSize);
-        bool isValidHeight = isNumericHeight && (Height >= minimumSize);
+        bool isValidWidth = isNumericWidth && (width >= minimumSize);
+        bool isValidHeight = isNumericHeight && (height >= minimumSize);
 
         if (isValidWidth && isValidHeight)
-            return new PlateauSize(Width, Height);
+            return new PlateauSize(width, height);
         else
             return null;
     }
 
     internal static RoverPosition? ParseRoverPosition(string userInput)
     {
-        string normalisedInput = NormaliseInput(userInput)!;
+        string normalisedInput = NormaliseInput(userInput)!.ToUpper();
 
         string[] splitInput = normalisedInput.Split(' ');
         if (splitInput.Length != 3)
             return null;
 
-        bool isNumericXCoord = int.TryParse(splitInput[0], out int X);
-        bool isNumericYCoord = int.TryParse(splitInput[1], out int Y);
+        bool isNumericXCoord = int.TryParse(splitInput[0], out int xCoord);
+        bool isNumericYCoord = int.TryParse(splitInput[1], out int yCoord);
 
-        bool isValidXCoord = isNumericXCoord && (X > 0);
-        bool isValidYCoord = isNumericYCoord && (Y > 0);
+        bool isValidXCoord = isNumericXCoord && (xCoord > 0);
+        bool isValidYCoord = isNumericYCoord && (yCoord > 0);
 
-        string[] validDirections = Enum.GetNames(typeof(Compass));
+        string[] validDirections = ["N", "E", "S", "W"];
         bool isValidDirection = validDirections.Contains(splitInput[2]);
 
         if (isValidXCoord && isValidYCoord && isValidDirection)
-            return new RoverPosition(X, Y, splitInput[2]);
+        {
+            Compass direction = ConvertStringToDirection(splitInput[2]);
+            return new RoverPosition(xCoord, yCoord, direction);
+        }
         else
             return null;
     }
 
     internal static List<Command>? ParseCommands(string userInput)
     {
-        string normalisedInput = NormaliseInput(userInput)!;
+        string normalisedInput = NormaliseInput(userInput)!.ToUpper();
 
         string[] splitInput = normalisedInput.Split(' ');
 
-        string[] validCommands = Enum.GetNames(typeof(Command));
-
-        foreach (string command in splitInput)
-            if (!validCommands.Contains(command))
+        string[] validCommands = ["F", "B", "R", "L"];
+        foreach (string commandString in splitInput)
+            if (!validCommands.Contains(commandString))
                 return null;
 
-        List<Command> commands = splitInput.Select(s => (Command)Enum.Parse(typeof(Command), s))
+        List<Command> commands = splitInput.Select(s => ConvertStringToCommand(s))
                                            .ToList();
         return commands;
+    }
+
+    private static Compass ConvertStringToDirection(string compassString)
+    {
+        Compass compassEnum = compassString switch
+        {
+            "N" => Compass.North,
+            "E" => Compass.East,
+            "S" => Compass.South,
+            "W" => Compass.West
+        };
+        return compassEnum;
+    }
+
+    private static Command ConvertStringToCommand(string commandString)
+    {
+        Command commandEnum = commandString switch
+        {
+            "F" => Command.MoveForward,
+            "B" => Command.MoveBack,
+            "R" => Command.TurnRight,
+            "L" => Command.TurnLeft
+        };
+        return commandEnum;
     }
 
     private static string? NormaliseInput(string input)

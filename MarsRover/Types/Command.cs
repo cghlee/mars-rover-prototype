@@ -2,7 +2,8 @@
 
 internal enum Command
 {
-    F,
-    L,
-    R
+    MoveForward,
+    MoveBack,
+    TurnLeft,
+    TurnRight
 }

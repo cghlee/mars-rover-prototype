@@ -6,11 +6,10 @@ internal class RoverPosition
     internal int Y { get; set; }
     internal Compass Facing { get; set; }
 
-    internal RoverPosition(int x, int y, string facing)
+    internal RoverPosition(int x, int y, Compass facing)
     {
         X = x;
         Y = y;
-
-        Facing = (Compass)Enum.Parse(typeof(Compass), facing.ToUpper());
+        Facing = facing;
     }
 }

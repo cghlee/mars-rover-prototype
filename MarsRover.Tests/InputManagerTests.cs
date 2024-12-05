@@ -463,7 +463,7 @@ public class InputManagerTests
     {
         // Arrange
         string? input = "1 2 N";
-        RoverPosition? expected = new RoverPosition(1, 2, "N");
+        RoverPosition? expected = new RoverPosition(1, 2, Compass.North);
 
         // Act
         RoverPosition? result = InputManager.ParseRoverPosition(input);
@@ -481,7 +481,7 @@ public class InputManagerTests
     {
         // Arrange
         string? input = "1 2 N";
-        RoverPosition? expected = new RoverPosition(1, 2, "n");
+        RoverPosition? expected = new RoverPosition(1, 2, Compass.North);
 
         // Act
         RoverPosition? result = InputManager.ParseRoverPosition(input);
@@ -499,7 +499,7 @@ public class InputManagerTests
     {
         // Arrange
         string? input = "12 27 N";
-        RoverPosition? expected = new RoverPosition(12, 27, "N");
+        RoverPosition? expected = new RoverPosition(12, 27, Compass.North);
 
         // Act
         RoverPosition? result = InputManager.ParseRoverPosition(input);
@@ -546,7 +546,7 @@ public class InputManagerTests
     {
         // Arrange
         string? input = "L F R";
-        List<Command>? expected = [Command.L, Command.F, Command.R];
+        List<Command>? expected = [Command.TurnLeft, Command.MoveForward, Command.TurnRight];
 
         // Act
         List<Command>? result = InputManager.ParseCommands(input);
@@ -559,9 +559,9 @@ public class InputManagerTests
     {
         // Arrange
         string? input = "L F R R F L F F F";
-        List<Command>? expected = [Command.L, Command.F, Command.R,
-                                   Command.R, Command.F, Command.L,
-                                   Command.F, Command.F, Command.F];
+        List<Command>? expected = [Command.TurnLeft, Command.MoveForward, Command.TurnRight,
+                                   Command.TurnRight, Command.MoveForward, Command.TurnLeft,
+                                   Command.MoveForward, Command.MoveForward, Command.MoveForward];
 
         // Act
         List<Command>? result = InputManager.ParseCommands(input);
@@ -574,7 +574,7 @@ public class InputManagerTests
     {
         // Arrange
         string? input = "L,F,R";
-        List<Command>? expected = [Command.L, Command.F, Command.R];
+        List<Command>? expected = [Command.TurnLeft, Command.MoveForward, Command.TurnRight];
 
         // Act
         List<Command>? result = InputManager.ParseCommands(input);
@@ -587,9 +587,9 @@ public class InputManagerTests
     {
         // Arrange
         string? input = "L,F,R,R,F,L,F,F,F";
-        List<Command>? expected = [Command.L, Command.F, Command.R,
-                                   Command.R, Command.F, Command.L,
-                                   Command.F, Command.F, Command.F];
+        List<Command>? expected = [Command.TurnLeft, Command.MoveForward, Command.TurnRight,
+                                   Command.TurnRight, Command.MoveForward, Command.TurnLeft,
+                                   Command.MoveForward, Command.MoveForward, Command.MoveForward];
 
         // Act
         List<Command>? result = InputManager.ParseCommands(input);
@@ -602,7 +602,7 @@ public class InputManagerTests
     {
         // Arrange
         string? input = "L, F, R";
-        List<Command>? expected = [Command.L, Command.F, Command.R];
+        List<Command>? expected = [Command.TurnLeft, Command.MoveForward, Command.TurnRight];
 
         // Act
         List<Command>? result = InputManager.ParseCommands(input);
@@ -615,10 +615,9 @@ public class InputManagerTests
     {
         // Arrange
         string? input = "L, F, R, R, F, L, F, F, F";
-        List<Command>? expected = [Command.L, Command.F, Command.R,
-                                   Command.R, Command.F, Command.L,
-                                   Command.F, Command.F, Command.F];
-
+        List<Command>? expected = [Command.TurnLeft, Command.MoveForward, Command.TurnRight,
+                                   Command.TurnRight, Command.MoveForward, Command.TurnLeft,
+                                   Command.MoveForward, Command.MoveForward, Command.MoveForward];
         // Act
         List<Command>? result = InputManager.ParseCommands(input);
 
