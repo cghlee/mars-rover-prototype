@@ -11,6 +11,17 @@ internal class Rover
         RoverPosition = roverPosition;
     }
 
+    internal void ProcessCommands(List<Command> commands, PlateauSize plateauSize)
+    {
+        foreach (Command command in commands)
+        {
+            if (command is Command.MoveForward or Command.MoveBack)
+                Move(command, plateauSize);
+            else
+                Rotate(command);
+        }
+    }
+
     internal Compass Rotate(Command command)
     {
         Compass newDirection = Compass.North;

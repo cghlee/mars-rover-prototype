@@ -16,21 +16,8 @@ internal class Program
         List<Command> test = InputManager.ParseCommands("l f l f l f l f f");
         List<Command> test2 = InputManager.ParseCommands("F F R F F R F R R F");
 
-        foreach (Command command in test)
-        {
-            if (command == Command.TurnLeft || command == Command.TurnRight)
-                Console.WriteLine(rover.Rotate(command));
-            else
-                Console.WriteLine(rover.Move(command, plateauSize));
-        }
-
-        foreach (Command command in test2)
-        {
-            if (command == Command.TurnLeft || command == Command.TurnRight)
-                Console.WriteLine(rover2.Rotate(command));
-            else
-                Console.WriteLine(rover2.Move(command, plateauSize));
-        }
+        rover.ProcessCommands(test, plateauSize);
+        rover2.ProcessCommands(test2, plateauSize);
 
         Console.WriteLine(rover.RoverPosition.X);
         Console.WriteLine(rover.RoverPosition.Y);

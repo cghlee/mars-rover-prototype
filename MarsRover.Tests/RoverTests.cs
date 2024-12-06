@@ -207,4 +207,92 @@ public class RoverTests
         });
     }
     #endregion
+
+    #region ProcessCommands Tests
+    [Test]
+    public void ProcessCommands_MovesRoverForwardsNorthSingle()
+    {
+        // Arrange
+        PlateauSize plateauSize = new PlateauSize(5, 5);
+        RoverPosition roverPosition = new RoverPosition(0, 0, Compass.North);
+        Rover testRover = new Rover("testName", roverPosition);
+
+        List<Command> commands = new() { Command.MoveForward };
+
+        // Act
+        testRover.ProcessCommands(commands, plateauSize);
+
+        // Assert
+        Assert.Multiple(() =>
+        {
+            Assert.That(testRover.RoverPosition.Y, Is.EqualTo(1));
+            Assert.That(testRover.RoverPosition.X, Is.EqualTo(0));
+            Assert.That(testRover.RoverPosition.Facing, Is.EqualTo(Compass.North));
+        });
+    }
+    [Test]
+    public void ProcessCommands_MovesRoverForwardsBackwardsSingle()
+    {
+        // Arrange
+        PlateauSize plateauSize = new PlateauSize(5, 5);
+        RoverPosition roverPosition = new RoverPosition(0, 0, Compass.North);
+        Rover testRover = new Rover("testName", roverPosition);
+
+        List<Command> commands = new() { Command.MoveForward, Command.MoveBack };
+
+        // Act
+        testRover.ProcessCommands(commands, plateauSize);
+
+        // Assert
+        Assert.Multiple(() =>
+        {
+            Assert.That(testRover.RoverPosition.Y, Is.EqualTo(0));
+            Assert.That(testRover.RoverPosition.X, Is.EqualTo(0));
+            Assert.That(testRover.RoverPosition.Facing, Is.EqualTo(Compass.North));
+        });
+    }
+    [Test]
+    public void ProcessCommands_RotatesAndMovesRoverSingle()
+    {
+        // Arrange
+        PlateauSize plateauSize = new PlateauSize(5, 5);
+        RoverPosition roverPosition = new RoverPosition(0, 0, Compass.North);
+        Rover testRover = new Rover("testName", roverPosition);
+
+        List<Command> commands = new() { Command.TurnRight, Command.MoveForward };
+
+        // Act
+        testRover.ProcessCommands(commands, plateauSize);
+
+        // Assert
+        Assert.Multiple(() =>
+        {
+            Assert.That(testRover.RoverPosition.Y, Is.EqualTo(0));
+            Assert.That(testRover.RoverPosition.X, Is.EqualTo(1));
+            Assert.That(testRover.RoverPosition.Facing, Is.EqualTo(Compass.East));
+        });
+    }
+    [Test]
+    public void ProcessCommands_RotatesAndMovesRoverMultiple()
+    {
+        // Arrange
+        PlateauSize plateauSize = new PlateauSize(5, 5);
+        RoverPosition roverPosition = new RoverPosition(0, 0, Compass.North);
+        Rover testRover = new Rover("testName", roverPosition);
+
+        List<Command> commands = new() { Command.TurnRight, Command.MoveForward, Command.TurnLeft,
+                                         Command.MoveForward, Command.TurnLeft };
+
+        // Act
+        testRover.ProcessCommands(commands, plateauSize);
+
+        // Assert
+        Assert.Multiple(() =>
+        {
+            Assert.That(testRover.RoverPosition.Y, Is.EqualTo(1));
+            Assert.That(testRover.RoverPosition.X, Is.EqualTo(1));
+            Assert.That(testRover.RoverPosition.Facing, Is.EqualTo(Compass.West));
+        });
+    }
+    #endregion
 }
