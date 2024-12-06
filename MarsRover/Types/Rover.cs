@@ -2,7 +2,7 @@
 
 internal class Rover
 {
-    internal string Name { get; set; }
+    internal string Name { get; }
     internal RoverPosition RoverPosition { get; set; }
 
     internal Rover(string name, RoverPosition roverPosition)
@@ -33,7 +33,8 @@ internal class Rover
                 Compass.North => Compass.East,
                 Compass.East => Compass.South,
                 Compass.South => Compass.West,
-                Compass.West => Compass.North
+                Compass.West => Compass.North,
+                _ => Compass.North
             };
         }
         else if (command == Command.TurnLeft)
@@ -43,7 +44,8 @@ internal class Rover
                 Compass.North => Compass.West,
                 Compass.West => Compass.South,
                 Compass.South => Compass.East,
-                Compass.East => Compass.North
+                Compass.East => Compass.North,
+                _ => Compass.North
             };
         }
 

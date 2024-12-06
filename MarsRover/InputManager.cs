@@ -4,13 +4,37 @@ namespace MarsRover;
 
 internal static class InputManager
 {
-    internal static string? GetUserInput(string prompt)
+    internal static string? GetInput(string prompt)
     {
-        Console.WriteLine(prompt);
+        string? userInput;
+        while (true)
+        {
+            Console.WriteLine(prompt);
 
-        string? userInput = Console.ReadLine();
-        if (String.IsNullOrEmpty(userInput))
-            return null;
+            userInput = Console.ReadLine();
+            if (!String.IsNullOrEmpty(userInput))
+                break;
+            else
+                Console.WriteLine("Invalid input, please try again.\n");
+        }
+
+        return userInput!;
+    }
+
+    internal static int GetInputFromOptions(string prompt, int[] options)
+    {
+        int userInput = 0;
+        while (true)
+        {
+            Console.WriteLine(prompt);
+
+            bool isValidInt = int.TryParse(Console.ReadLine(), out userInput);
+            if (isValidInt)
+                if (options.Contains(userInput))
+                    break;
+            else
+                Console.WriteLine("Invalid input, please try again.\n");
+        }
 
         return userInput;
     }
@@ -86,7 +110,8 @@ internal static class InputManager
             "N" => Compass.North,
             "E" => Compass.East,
             "S" => Compass.South,
-            "W" => Compass.West
+            "W" => Compass.West,
+            _ => Compass.North
         };
         return compassEnum;
     }
@@ -98,7 +123,8 @@ internal static class InputManager
             "F" => Command.MoveForward,
             "B" => Command.MoveBack,
             "R" => Command.TurnRight,
-            "L" => Command.TurnLeft
+            "L" => Command.TurnLeft,
+            _ => Command.MoveForward
         };
         return commandEnum;
     }
