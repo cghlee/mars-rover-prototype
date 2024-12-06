@@ -20,6 +20,17 @@ internal class Rover
             else
                 Rotate(command);
         }
+
+        string roverPositionInfo = GetRoverInfo();
+        Console.WriteLine($"\n{Name} is now at {roverPositionInfo}");
+    }
+
+    internal string GetRoverInfo()
+    {
+        string enumName = Enum.GetName(typeof(Compass), RoverPosition.Facing)!;
+        string roverPositionInfo = $"(X = {RoverPosition.X}, Y = {RoverPosition.Y}, facing {enumName})";
+
+        return roverPositionInfo;
     }
 
     internal Compass Rotate(Command command)

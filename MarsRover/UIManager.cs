@@ -1,4 +1,6 @@
-﻿namespace MarsRover;
+﻿using System.Xml.Linq;
+
+namespace MarsRover;
 
 internal class UIManager
 {
@@ -20,7 +22,8 @@ internal class UIManager
         bool isToQuit = false;
         while (!isToQuit)
         {
-            _marsManager.DisplayStatus();
+            Plateau currentPlateau = _marsManager.GetCurrentPlateau();
+            _marsManager.DisplayPlateauInfo();
 
             int selectedOption = GetEntrySelection();
             UIOption optionEnum = (UIOption)(selectedOption - 1);
@@ -28,27 +31,46 @@ internal class UIManager
             switch (optionEnum)
             {
                 case UIOption.DisplayMap:
-                    Console.WriteLine("NOT YET IMPLEMENTED!");
+                    Console.WriteLine("\nMap Display not yet implemented!");
                     break;
+
                 case UIOption.CommandRover:
-                    Console.WriteLine("NOT YET IMPLEMENTED!");
+                    Rover? selectedRover = currentPlateau.GetSelectedRover();
+                    if (selectedRover == null)
+                        break;
+
+                    // TODO: Split off both parts of the logic here, above and/or below
+                    string commandInput = InputManager.GetInput("\nInput space- or comma-delimited commands [F, B, L, R] (for example: f, b, l, r)");
+                    List<Command>? commandList = InputManager.ParseCommands(commandInput);
+                    if (commandList == null)
+                        break;
+
+                    selectedRover.ProcessCommands(commandList, currentPlateau.PlateauSize);
                     break;
+
                 case UIOption.NewRover:
-                    Console.WriteLine("NOT YET IMPLEMENTED!");
+                    currentPlateau.DeployNewRover();
                     break;
+
                 case UIOption.GetRoverInfo:
-                    Console.WriteLine("NOT YET IMPLEMENTED!");
+                    Console.WriteLine($"\nAll {currentPlateau.AllRovers.Count} Rovers currently on {currentPlateau.Name}:");
+                    currentPlateau.DisplayRoverInfo();
                     break;
+
                 case UIOption.SwitchPlateau:
-                    Console.WriteLine("NOT YET IMPLEMENTED!");
+                    Console.WriteLine("\nPlateau Switching not yet implemented!");
                     break;
+
                 case UIOption.NewPlateau:
-                    Console.WriteLine("NOT YET IMPLEMENTED!");
+                    Console.WriteLine("\nCreating New Plateaus not yet implemented!");
                     break;
+
                 case UIOption.Quit:
                     // Eventually add saving of data prior to quitting...?
                     isToQuit = true;
+                    Console.WriteLine("\nShutting down...");
                     break;
+
                 default:
                     goto case UIOption.Quit;
             }

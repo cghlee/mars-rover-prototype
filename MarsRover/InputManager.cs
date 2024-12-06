@@ -4,7 +4,7 @@ namespace MarsRover;
 
 internal static class InputManager
 {
-    internal static string? GetInput(string prompt)
+    internal static string GetInput(string prompt)
     {
         string? userInput;
         while (true)
@@ -18,7 +18,7 @@ internal static class InputManager
                 Console.WriteLine("Invalid input, please try again.\n");
         }
 
-        return userInput!;
+        return userInput;
     }
 
     internal static int GetInputFromOptions(string prompt, int[] options)
@@ -96,7 +96,10 @@ internal static class InputManager
         string[] validCommands = ["F", "B", "R", "L"];
         foreach (string commandString in splitInput)
             if (!validCommands.Contains(commandString))
+            {
+                Console.WriteLine("Invalid command input, please try again.\n");
                 return null;
+            }
 
         List<Command> commands = splitInput.Select(s => ConvertStringToCommand(s))
                                            .ToList();

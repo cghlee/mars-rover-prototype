@@ -18,17 +18,19 @@ internal class MarsManager
             if (newPlateauSize != null)
                 break;
             else
-                Console.WriteLine("Invalid plateau size, please try again.\n");
+                Console.WriteLine("\nInvalid plateau size, please try again.\n");
         }
 
         Plateau newPlateau = new Plateau(newPlateauName, newPlateauSize);
         AllPlateaus.Add(newPlateau);
 
-        Console.WriteLine($"{newPlateauName} is now yours; new discoveries await!\n");
+        Console.WriteLine($"\n{newPlateauName} is now yours; new discoveries await!");
     }
 
-    internal void DisplayStatus()
+    internal void DisplayPlateauInfo()
     {
+        Console.WriteLine($"\n==================================================\n");
+
         Plateau currentPlateau = GetCurrentPlateau();
         Console.WriteLine($"You are currently on {currentPlateau.Name}.");
         Console.WriteLine($"There are {currentPlateau.AllRovers.Count} rovers on {currentPlateau.Name}.\n");
